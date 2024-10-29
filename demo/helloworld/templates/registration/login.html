@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="flex items-center justify-center h-screen">
+    <div class="w-full max-w-md">
+        <form method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            {% csrf_token %}
+            <h2 class="text-xl font-bold mb-6 text-center">Login</h2>
+            
+            {% if form.non_field_errors %}
+                <div class="mb-4 text-red-500">{{ form.non_field_errors }}</div>
+            {% endif %}
+            
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                    Username
+                </label>
+                <input type="text" name="username" id="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Password
+                </label>
+                <input type="password" name="password" id="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+
+            <div class="flex items-center justify-between">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Login
+                </button>
+            </div>
+
+            {% comment %}
+            <p class="mt-4 text-center text-gray-600 text-xs">
+                Don't have an account? <a href="{% url 'signup' %}" class="text-blue-500">Sign up</a>
+            </p>
+            {% endcomment %}
+        </form>
+    </div>
+</div>
+{% endblock %}
